@@ -1,0 +1,11 @@
+<synth>
+  <style id="mybutton">
+     <state>
+       <imagePainter method="buttonBackground" path="mybutton.png" sourceInsets="3 6 12 20" paintCenter="true" stretch="true"/>
+    <insets top="3" left="6" bottom="12" right="20"/>
+    <font name="Aharoni" size="16"/>
+  </state>
+  <property key="Button.margin" type="insets" value="0 0 5 8"/>
+  </style>
+  <bind style="mybutton" type="region" key="Button"/>
+</synth>

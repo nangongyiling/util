@@ -1,0 +1,114 @@
+StringTokenizer tokenizer = new StringTokenizer(number, ",");
+        boolean bool = true;
+        while (tokenizer.hasMoreTokens()) {
+            try {
+                Double.valueOf(tokenizer.nextToken());
+            } catch (Exception e) {
+                bool = false;
+            }
+        }
+//将字符串转化为数组的方法
+int gv[];
+   int i = 0; 
+   StringTokenizer tokenizer = new StringTokenizer(goodsVolume, "，, ");
+         gv = new int[tokenizer.countTokens()];//动态的决定数组的长度
+     while (tokenizer.hasMoreTokens()) {
+        String d = tokenizer.nextToken();
+        gv[i] = Integer.valueOf(d);//将字符串转换为整型
+        i++;
+    }
+
+ //字符串解析
+    private String[] stringAnalytical(String str, String divisionChar) {
+        String string[];
+       int i = 0; 
+        StringTokenizer tokenizer = new StringTokenizer(str, divisionChar);
+        string = new String[tokenizer.countTokens()];// 动态的决定数组的长度
+         while (tokenizer.hasMoreTokens()) {
+            string[i] = new String();
+            string[i] = tokenizer.nextToken();
+            i++;
+        }
+        return string;// 返回字符串数组
+    }
+
+ int countTokens() 
+          计算在生成异常之前可以调用此 tokenizer 的 nextToken 方法的次数。 
+ boolean hasMoreElements() 
+          返回与 hasMoreTokens 方法相同的值。 
+ boolean hasMoreTokens() 
+          测试此 tokenizer 的字符串中是否还有更多的可用标记。 
+ Object nextElement() 
+          除了其声明返回值是 Object 而不是 String 之外，它返回与 nextToken 方法相同的值。 
+ String nextToken() 
+          返回此 string tokenizer 的下一个标记。 
+ String nextToken(String delim) 
+          返回此 string tokenizer 的字符串中的下一个标记。 
+
+
+
+
+public class StringAnalytical {
+
+    // 字符串解析，将字符串转根据分割符换成字符串数组
+    private String[] stringAnalytical(String string, char c) {
+        int i = 0;
+        int count = 0;
+
+        if (string.indexOf(c) == -1)
+            return new String[] { string };// 如果不含分割符则返回字符本身
+        char[] cs = string.toCharArray();
+        int length = cs.length;
+        for (i = 1; i < length - 1; i++) {// 过滤掉第一个和最后一个是分隔符的情况
+            if (cs[i] == c) {
+                count++;// 得到分隔符的个数
+            }
+        }
+        String[] strArray = new String[count + 1];
+        int k = 0, j = 0;
+        String str = string;
+        if ((k = str.indexOf(c)) == 0)// 去掉第一个字符是分隔符的情况
+            str = str.substring(k + 1);
+        if (str.indexOf(c) == -1)// 检测是否含分隔符，如果不含则返回字符串
+            return new String[] { str };
+        while ((k = str.indexOf(c)) != -1) {// 字符串含分割符的时候
+            strArray[j++] = str.substring(0, k);
+            str = str.substring(k + 1);
+            if ((k = str.indexOf(c)) == -1 && str.length() > 0)
+                strArray[j++] = str.substring(0);
+        }
+        return strArray;
+    }
+
+    public void printString(String[] s) {
+        System.out.println("*********************************");
+        for (String str : s)
+            System.out.println(str);
+    }
+
+    public static void main(String[] args) {
+        String[] str = null;
+        StringAnalytical string = new StringAnalytical();
+        str = string.stringAnalytical("1aaa", '@');
+        string.printString(str);
+        str = string.stringAnalytical("2aaa@", '@');
+        string.printString(str);
+        str = string.stringAnalytical("@3aaa", '@');
+        string.printString(str);
+        str = string.stringAnalytical("4aaa@bbb", '@');
+        string.printString(str);
+        str = string.stringAnalytical("@5aaa@bbb", '@');
+        string.printString(str);
+        str = string.stringAnalytical("6aaa@bbb@", '@');
+        string.printString(str);
+        str = string.stringAnalytical("@7aaa@", '@');
+        string.printString(str);
+        str = string.stringAnalytical("@8aaa@bbb@", '@');
+        string.printString(str);
+        str = string.stringAnalytical("@9aaa@bbb@ccc", '@');
+        string.printString(str);
+        str = string.stringAnalytical("@10aaa@bbb@ccc@eee", '@');
+        string.printString(str);
+    }
+}
+

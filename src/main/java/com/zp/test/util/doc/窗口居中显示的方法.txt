@@ -1,0 +1,7 @@
+//窗口居中显示的方法
+ this.setLocationRelativeTo(null);
+ public void setLocationRelativeTo(Component c)
+设置窗口相对于指定组件的位置。  
+如果组件当前未显示，或者 c 为 null，则此窗口将置于屏幕的中央。中点可以使用 GraphicsEnvironment.getCenterPoint 确定。  
+
+如果该组件的底部在屏幕外，则将该窗口放置在 Component 最接近窗口中心的一侧。因此，如果 Component 在屏幕的右部，则 Window 将被放置在左部，反之亦然。

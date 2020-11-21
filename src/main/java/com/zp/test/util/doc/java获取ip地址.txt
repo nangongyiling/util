@@ -1,0 +1,74 @@
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class ip extends JFrame
+  implements ActionListener
+{
+  private static final long serialVersionUID = 3339481369781127417L;
+  JButton jb1;
+  JButton jb2;
+  JButton jb3;
+  JPanel jp;
+  JLabel jl;
+  JLabel jl1;
+  JTextField jt;
+
+  public ip()
+  {
+    this.jp = new JPanel();
+    this.jl = new JLabel();
+    this.jl1 = new JLabel("您的域名：");
+    this.jb1 = new JButton("提交");
+    this.jb2 = new JButton("重置");
+    this.jb3 = new JButton("退出");
+    this.jt = new JTextField(20);
+    this.jb1.addActionListener(this);
+    this.jb2.addActionListener(this);
+    this.jb3.addActionListener(this);
+    this.jp.setLayout(new GridLayout(3, 2));
+    this.jp.add(this.jl1);
+    this.jp.add(this.jt);
+    this.jp.add(this.jb1);
+    this.jp.add(this.jl);
+    this.jp.add(this.jb2);
+    this.jp.add(this.jb3);
+
+    setBounds(200, 200, 500, 240);
+    add(this.jp);
+    setVisible(true);
+    setDefaultCloseOperation(3);
+  }
+
+  public static void main(String[] args)
+  {
+    new ip();
+  }
+
+  public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == this.jb1) {
+      String url = this.jt.getText();
+      InetAddress ip = null;
+      try {
+        ip = InetAddress.getByName(url);
+      }
+      catch (UnknownHostException e1) {
+        e1.printStackTrace();
+      }
+      this.jl.setText(ip.toString());
+    }
+    else if (e.getSource() == this.jb2) {
+      this.jl.setText("");
+      this.jt.setText("");
+    } else {
+      System.exit(0);
+    }
+  }
+}

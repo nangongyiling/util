@@ -1,0 +1,25 @@
+import java.util.*;
+public class DaoXu {
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // TODO 自动生成方法存根
+        System.out.println("请输入单个字符并回车: ");
+        Scanner c = new Scanner(System.in);
+        
+        String[] ch = new String[5];
+        
+        for(int i=0; i<5; i++){
+            ch[i] = c.next();
+        }
+        
+        //Arrays.sort(ch);
+
+        System.out.print("倒序输出: ");
+        for (int j = ch.length-1; j >= 0; j--) {
+            System.out.print(ch[j]+" ");
+        }
+    }
+}

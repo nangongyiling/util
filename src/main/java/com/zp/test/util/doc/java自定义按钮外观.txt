@@ -1,0 +1,31 @@
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.plaf.synth.SynthLookAndFeel;
+ 
+public class MyButton {
+ JFrame frame = new JFrame("Test Buttons");
+ JButton jButton = new JButton("JButton"); // °´Å¥
+ public MyButton() {
+  frame.setLayout(new FlowLayout());
+  frame.getContentPane().add(jButton);
+ }
+ public void show() {
+  frame.pack();
+  frame.show();
+ }
+ public static void main(String[] args) {
+  MyButton tb = new MyButton();
+  tb.show();
+  SynthLookAndFeel slf = new SynthLookAndFeel();
+  try {
+      slf.load(MyButton.class.getResourceAsStream("mybutton.xml"), MyButton.class);
+      UIManager.setLookAndFeel(slf);
+  } catch (Exception e) {
+      e.printStackTrace();
+      return;
+  }
+
+ }
+}
